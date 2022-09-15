@@ -1,4 +1,4 @@
-from smbus2 import SMBus, i2c_msg
+from lib.smbus2 import SMBus, i2c_msg
 from time import sleep
 
 def twos_complement(input):
