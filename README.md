@@ -7,6 +7,12 @@ Useage:
 - SSH Ploter
 - sql Data
 
+## Requierments 
+- debian arm based distro
+  - Rasberry pi (LST)(BUSTER) 
+- python3
+  - libraries include or built-in
+
 ## Featured Scripts
 
 - its_database.py 
@@ -35,6 +41,9 @@ basic use:
   ```
   etc..
 
-### Tools and Resources
+### Tools
 - [sqliteonline](https://sqliteonline.com/) - Playground
-- [bmp280](https://github.com/Tearran/bmp280) - Sensor Driver
+### Libraries
+- [bmp280](https://github.com/Tearran/bmp280) - Weather Sensor
+- [FaBo9AXIS-MPU9250-Python](https://github.com/FaBoPlatform/FaBo9AXIS-MPU9250-Python) - Inertial measurement sensor
+- [Melopero_AMG8833](https://github.com/melopero/Melopero_AMG8833) - 8x8 ir camera ( aka grideye )
