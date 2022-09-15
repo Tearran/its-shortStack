@@ -1,6 +1,6 @@
 import sys, os
 from http.server import BaseHTTPRequestHandler, HTTPServer
-
+path=os.listdir(os.path.dirname(__file__))
 
 class MyServer(BaseHTTPRequestHandler):
         
@@ -8,7 +8,7 @@ class MyServer(BaseHTTPRequestHandler):
         its_list = ''
         for x in os.listdir(os.path.dirname(__file__)):
             if x.endswith(".py"):
-                its_list+=" <LI>"+x+" </LI>"
+                its_list+=" <LI>"+x+"</LI>"
           
         self.send_response(200)
         self.send_header("Content-type", "text/html")
