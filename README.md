@@ -1,29 +1,29 @@
 # its-i2cDevices
 its-i2cDevices is a collection of i2c device software for the Raspberry pi 
-Useage:
+Usage:
 - i2c component testing
 - Bash pipe
-- python3 webapps
-- SSH Ploter
-- sql Data
+- python3 web apps
+- SSH Plotter
+- SQL Data
 
-## Requierments 
-- debian arm based distro
+## Requirements 
+- Debian arm-based distro
   - Rasberry pi (LST)(BUSTER) 
 - python3
-  - libraries include or built-in
+  - libraries include built-in
 
 ## Featured Scripts
 
 - its_database.py 
   - sqlite3.db ~ A list of i2c [LKARS](https://www.lkars.com/) tested devices 
-- its_bmp280.py - Temprature and barametric pressure 
+- its_bmp280.py - Temperature and barometric pressure 
 - its_amg8833.py - 8x8 IR camera ( aka: GridEye )
 - its_mlx90614.py -  infrared thermometer
 - its_mpu60xx.py - 6-axis Inertial measurement unit 
 - its_pyWebApp.py - web app example 
   - Launches a simple web server
-  - list apps folder files with .py extention
+  - list apps folder files with the .py extension
   - displays list on localhost:8000
 
 ### its scripts
@@ -39,7 +39,7 @@ basic use:
   ```bash
   python3 its_pyWebApp.py
   ```
-  etc..
+  etc...
 
 ### Tools
 - [sqliteonline](https://sqliteonline.com/) - Playground
