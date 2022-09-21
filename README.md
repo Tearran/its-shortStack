@@ -1,5 +1,7 @@
 # its_shorstack
 its_shorstack is companion to display output from [its-i2cDevices](https://github.com/Tearran/its-i2cDevices)  for the Raspberry pi 
+copy any its from [its-i2cDevices](https://github.com/Tearran/its-i2cDevices) to root of its-shortStack folder to see link
+Change the permitions to 'chmod +x its-<name>.py to view on page
 
 ## Requirements 
 - Debian arm-based distro
