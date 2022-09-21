@@ -28,9 +28,9 @@ basic use:
   ```bash
   python3 its_database.py
   ```
-
+## its_pyWebApp
   ```bash
-  python3 its_pyWebApp.py
+  python3 its_pyWebApp
   ```
 
 ### Tools
