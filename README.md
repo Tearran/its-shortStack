@@ -23,15 +23,22 @@ Change the permitions to 'chmod +x its-<name>.py to view on page
 ### its scripts
 basic use:
   python3 its_{name}.py
-## its_database.py
-  ```bash
-  python3 its_database.py
-  ```
+
 ## its_pyWebApp
   ```bash
   python3 its_pyWebApp
   ```
+# The following uses a bmp280 
+and https://raw.githubusercontent.com/Tearran/its-i2cDevices/main/its_bmp280.py
 
+```bash
+https://github.com/Tearran/its-shortStack.git
+cd its-shortStack
+wget https://raw.githubusercontent.com/Tearran/its-i2cDevices/main/its_bmp280.py
+chmod +x its_bmp280.py
+python3 ./its_pyWebApp
+```
+![alt text](https://cdn.discordapp.com/attachments/988863432650543194/1022234845402902579/unknown.png "Logo Title Text 1")
 ### Tools
 - [sqliteonline](https://sqliteonline.com/) - Playground
 - [codepen.io](https://codepen.io/Tearran) - Playground
