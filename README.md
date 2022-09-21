@@ -1,10 +1,8 @@
-# its-i2cDevices
-its-i2cDevices is a collection of i2c device software for the Raspberry pi 
+# its_shorstack
+is a python3 web server and app for the Raspberry pi 
 Usage:
 - i2c component testing
-- Bash pipe
-- python3 web apps
-- SSH Plotter
+- Bash pipes
 - SQL Data
 
 ## Requirements 
@@ -17,11 +15,8 @@ Usage:
 
 - its_database.py 
   - sqlite3.db ~ A list of i2c [LKARS](https://www.lkars.com/) tested devices 
-- its_bmp280.py - Temperature and barometric pressure 
-- its_amg8833.py - 8x8 IR camera ( aka: GridEye )
-- its_mlx90614.py -  infrared thermometer
-- its_mpu60xx.py - 6-axis Inertial measurement unit 
-- its_pyWebApp.py - web app example 
+
+- its_pyWebApp - web app example 
   - Launches a simple web server
   - list apps folder files with the .py extension
   - displays list on localhost:8000
@@ -33,13 +28,10 @@ basic use:
   ```bash
   python3 its_database.py
   ```
-  ```bash
-  python3 its_bmp280.py
-  ```
+
   ```bash
   python3 its_pyWebApp.py
   ```
-  etc...
 
 ### Tools
 - [sqliteonline](https://sqliteonline.com/) - Playground
