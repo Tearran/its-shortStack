@@ -1,4 +1,8 @@
-import sys, os
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# Copyright (c) 2022 Joseph Turner (aka Tearran) & contributors
+
+import sys, os, sqlite3, csv
 from http.server import BaseHTTPRequestHandler, HTTPServer
 path=os.listdir(os.path.dirname(__file__))
 
@@ -6,23 +10,62 @@ class MyServer(BaseHTTPRequestHandler):
         
     def do_GET(self):
         its_list = ''
-        for x in os.listdir(os.path.dirname(__file__)):
-            if x.endswith(".py"):
-                its_list+=" <LI>"+x+"</LI>"
-          
         self.send_response(200)
         self.send_header("Content-type", "text/html")
         self.end_headers()
-        self.wfile.write(bytes("<html><head><title>ITS LKARS</title></head>", "utf-8"))
-        self.wfile.write(bytes("<body style='background-color:#3c3c3c; color:#ffffff; '>", "utf-8"))
-        self.wfile.write(bytes("<H1 style='text-align:center;' >Welcome to ITS LKARS</H1>", "utf-8"))
-        self.wfile.write(bytes("<P style='text-align:center;'  >Linux Kernel to Access and Record Sensor data. (LKARS)</P>", "utf-8"))
-        self.wfile.write(bytes("<H2 style='text-align:center;' >Include Tearrans Script(s). (ITS)</H2>", "utf-8"))
-        self.wfile.write(bytes("<P style='text-align:center;' >Include This/these Script(s).</P>", "utf-8"))
-        self.wfile.write(bytes("<UL>"+its_list+"</UL>", "utf-8"))
-        self.wfile.write(bytes("</body></html>", "utf-8"))
 
+        self.wfile.write(bytes('''
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <title>ITS LKARS
+        </title>
+       
+        <style type="text/css" media="screen">
+            body {background-color:#3c3c3c; color:#ffffff; }
+            a:link { color:white; text-decoration: none; }
+            a:visited { color:yellow; text-decoration: none; }
+            a:hover { color:white; text-decoration: none; }
+            a:active { color:yellow; text-decoration: underline; }
+        </style>
+        
+        </head>
+        <body> 
+               
+        <H1 style='text-align:center;'>ITS LKARS</H1>
+        <P style='text-align:center;'>Linux Kernel to Access and Record Sensor data. ( LKARS )</P>
+        <P style='text-align:center;' >Include This/these Script(s). ( its )</P>
+        <nav style='text-align:center;'>
+        <a href="/">Home</a>
+        
+        ''', "utf-8"))
 
+        ## loop scripts avalible in this folder
+        runits=''     
+        for x in os.listdir(os.path.dirname(__file__)):
+            if x.endswith(".py"):
+                sensor = os.popen(os.path.dirname(__file__)+'/'+x+'').read()
+                self.wfile.write(bytes(' |  <a href="/'+x+'"> '+x+' </a> ', "utf-8")) 
+                if self.path=='/':
+                    runits='</nav><hr><hr>'                 
+                elif self.path=='/'+x+'':
+                    runits='</nav><hr>'+sensor+'<hr>'       
+        
+        
+        self.wfile.write(bytes(runits, "utf-8"))
+        #cpu_temp = os.popen("/sys/class/thermal/thermal_zone0/temp").read()       
+        cpu_temp = os.popen("/opt/vc/bin/vcgencmd measure_temp").read()
+
+        self.wfile.write(bytes('''
+        <label for="temp">CPU Temp:</label>
+        <meter id="temp" value="'''+cpu_temp[5:-3:]+'''" min="20" max="80">'''+cpu_temp+''' out of 120</meter><br>
+            <footer>
+                  <p>Copyright (c) 2022 Joseph Turner (aka Tearran) & contributors</p>
+            </footer>
+        </body>
+        </html>
+        ''', "utf-8"))
+        
 if __name__ == "__main__":
     appServer = HTTPServer(('', 8000), MyServer)
     print("its local server")
