@@ -1,9 +1,5 @@
 # its_shorstack
-is a python3 web server and app for the Raspberry pi 
-Usage:
-- i2c component testing
-- Bash pipes
-- SQL Data
+its_shorstack is companion to display output from [its-i2cDevices](https://github.com/Tearran/its-i2cDevices)  for the Raspberry pi 
 
 ## Requirements 
 - Debian arm-based distro
@@ -18,7 +14,8 @@ Usage:
 
 - its_pyWebApp - web app example 
   - Launches a simple web server
-  - list apps folder files with the .py extension
+  - list files with the .py extension
+  - exicutes .py and displays results on a web page
   - displays list on localhost:8000
 
 ### its scripts
@@ -35,7 +32,4 @@ basic use:
 
 ### Tools
 - [sqliteonline](https://sqliteonline.com/) - Playground
-### Libraries
-- [bmp280](https://github.com/Tearran/bmp280) - Weather Sensor
-- [FaBo9AXIS-MPU9250-Python](https://github.com/FaBoPlatform/FaBo9AXIS-MPU9250-Python) - Inertial measurement sensor
-- [Melopero_AMG8833](https://github.com/melopero/Melopero_AMG8833) - 8x8 ir camera ( aka grideye )
+- [codepen.io](https://codepen.io/Tearran) - Playground
