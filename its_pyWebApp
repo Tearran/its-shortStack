@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) 2022 Joseph Turner (aka Tearran) & contributors
 
-import sys, os, sqlite3, csv
+import sys, os, sqlite3
 from http.server import BaseHTTPRequestHandler, HTTPServer
 path=os.listdir(os.path.dirname(__file__))
 
@@ -44,23 +44,37 @@ class MyServer(BaseHTTPRequestHandler):
         runits=''     
         for x in os.listdir(os.path.dirname(__file__)):
             if x.endswith(".py"):
-                sensor = os.popen(os.path.dirname(__file__)+'/'+x+'').read()
-                self.wfile.write(bytes(' |  <a href="/'+x+'"> '+x+' </a> ', "utf-8")) 
-                if self.path=='/':
-                    runits='</nav><hr><hr>'                 
-                elif self.path=='/'+x+'':
-                    runits='</nav><hr>'+sensor+'<hr>'       
+                sensor = os.popen(os.path.dirname(__file__)+'/'+x+'').read()                                
+                if self.path=='/'+x+'': 
+                    self.wfile.write(bytes(' |  <a href="/'+x+'"> '+x+' </a> ', "utf-8"))
+                elif self.path=='/' :
+                    self.wfile.write(bytes(' |  <a href="/'+x+'"> '+x+' </a> ', "utf-8"))  
+                    pass
+        runits+='</nav>'
+        if self.path=='/':
+            i2c_URL=os.path.dirname(__file__)+'/db/sqlite.db'
+            conn = sqlite3.connect(i2c_URL)
         
+            c = conn.cursor()
+            c.execute("SELECT * FROM its_i2cList")
+            rows = c.fetchall()
         
-        self.wfile.write(bytes(runits, "utf-8"))
+            for row in rows:
+                if row[6] != "URL not found":
+                    self.wfile.write(bytes("<p>"+row[1]+" <a href="+row[6]+" target='_blank' >"+row[3]+":</a></p>", "utf-8"))
+                else:
+                    self.wfile.write(bytes("<p>"+row[1]+" "+row[3]+"</p>", "utf-8"))
+                conn.close        
+        
+        self.wfile.write(bytes(""+runits, "utf-8"))
+        
         #cpu_temp = os.popen("/sys/class/thermal/thermal_zone0/temp").read()       
         cpu_temp = os.popen("/opt/vc/bin/vcgencmd measure_temp").read()
 
         self.wfile.write(bytes('''
-        <label for="temp">CPU Temp:</label>
-        <meter id="temp" value="'''+cpu_temp[5:-3:]+'''" min="20" max="80">'''+cpu_temp+''' out of 120</meter><br>
             <footer>
-                  <p>Copyright (c) 2022 Joseph Turner (aka Tearran) & contributors</p>
+                <label for="temp">CPU Temp:</label><meter id="temp" value="'''+cpu_temp[5:-3:]+'''" min="20" max="80">'''+cpu_temp+''' out of 120</meter><br>
+                <p>Copyright (c) 2022 Joseph Turner (aka Tearran) & contributors</p>
             </footer>
         </body>
         </html>
